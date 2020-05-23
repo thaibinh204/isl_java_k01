@@ -44,7 +44,7 @@ public class Student {
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 		
-		LocalDate lcBirthday = LocalDate.of(birthday.getYear(), birthday.getMonth(), birthday.getDate());
+		LocalDate lcBirthday = LocalDate.of(birthday.getYear() + 1900, birthday.getMonth()+1, birthday.getDate());
         LocalDate now = LocalDate.now();
         this.age = Utils.getDiffYears(lcBirthday, now);
 	}
