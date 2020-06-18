@@ -4,8 +4,21 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<script type="text/javascript" src="js/common.js"></script>
+</head>
+<body>
+	<button onclick="insertDate()">The time is?</button>
+	<p id="demo" ondblclick="alert('on double click!');"
+		onmouseleave="onMouseLeaveDemo();"></p>
 
+	<label for="cars">Choose a car:</label>
+
+	<select name="cars" id="cars">
+
+	</select>
+
+</body>
+
+<script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript">
 	var a = 10;
 	var b = 15;
@@ -26,11 +39,21 @@
 	};
 
 	console.log(person.fullName());
-	//alert(c);
+
+	// insert Date text to Demo
+	function insertDate() {
+		document.getElementById('demo').innerHTML = Date();
+	}
+
+	window.addEventListener('load', function() {
+		var arr = [ 'Volvo', 'Saab', 'Mercedes', 'Audi' ];
+
+		loadSelectBox('cars', arr);
+	})
+
+	document.addEventListener("DOMContentLoaded", function(event) {
+		//we ready baby
+	});
 </script>
-</head>
-<body>
-	<button onclick="document.getElementById('demo').innerHTML = Date()">The time is?</button>
-	<p id="demo" ondblclick="alert('on double click!');" onmouseleave="onMouseLeaveDemo();"></p>
-</body>
+
 </html>
