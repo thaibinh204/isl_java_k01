@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<script type="text/javascript" src="js/common.js"></script>
+
+<script type="text/javascript">
+	var a = 10;
+	var b = 15;
+	var c = plus(a, b);
+	var d = nhan(a, b);
+
+	console.log(a + " + " + b + " = " + c);
+	console.log(a + " * " + b + " = " + d);
+
+	var person = {
+		firstName : "John",
+		lastName : "Doe",
+		age : 50,
+		eyeColor : "blue",
+		fullName : function() {
+			return this.firstName + " " + this.lastName;
+		}
+	};
+
+	console.log(person.fullName());
+	//alert(c);
+</script>
+</head>
+<body>
+	<button onclick="document.getElementById('demo').innerHTML = Date()">The time is?</button>
+	<p id="demo" ondblclick="alert('on double click!');" onmouseleave="onMouseLeaveDemo();"></p>
+</body>
+</html>
