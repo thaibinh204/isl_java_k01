@@ -10,4 +10,5 @@ public interface UserService {
     void save(User user);
 	List<User> findAll();
 	User findById(Long id);
+	User findByUserName(String userName);
 }
