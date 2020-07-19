@@ -1,11 +1,5 @@
 package com.example.thymeleafdemo.controllers;
 
-import com.example.thymeleafdemo.form.PersonForm;
-import com.example.thymeleafdemo.model.Person;
-import com.example.thymeleafdemo.model.User;
-import com.example.thymeleafdemo.service.UserService;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,31 +10,28 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.example.thymeleafdemo.form.PersonForm;
+import com.example.thymeleafdemo.model.Person;
+import com.example.thymeleafdemo.service.PersonService;
+
 @Controller
 public class MainController {
 
-	private static List<Person> persons = new ArrayList<Person>();
 	@Autowired
-	private UserService userService;
-
-	static {
-		persons.add(new Person("Bill", "Gates"));
-		persons.add(new Person("Steve", "Jobs"));
-		persons.add(new Person("Son", "Thuy"));
-	}
+	private PersonService personService;
 
 	@Value("${welcome.message}")
 	private String message;
 	@Value("${error.message}")
 	private String errorMessage;
 
-	@RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET)
+	@RequestMapping(value = {"/index" }, method = RequestMethod.GET)
 	public String index(Model model) {
 
-		User user = new User();
-		user.setUsername("hai123");		
-		user.setPassword("123123123");
-		userService.save(user);
+		Person person1 = new Person();
+		person1.setFirstName("Hai");
+		person1.setLastName("Nguyen");
+		personService.save(person1);
 		model.addAttribute("message", message);
 
 		return "index";
@@ -49,7 +40,37 @@ public class MainController {
 	@RequestMapping(value = { "/personList" }, method = RequestMethod.GET)
 	public String personList(Model model) {
 
-		model.addAttribute("persons", persons);
+		// ****************************************
+		// tra ve toan bo record cua bang
+		//List<Person> list = personService.findAll();
+		// ****************************************
+
+		// ****************************************
+		// tim kiem bang id
+		// Person person1 = personService.findById(Long.valueOf(3));
+		// List<Person> list = new ArrayList<Person>();
+		// list.add(person1);
+		// ****************************************
+		
+		// ****************************************
+		//Custom delete sql
+		//personService.deleteByFirstName("abc", "def");
+		//*****************************************
+		
+		// ****************************************
+		//Custom select sql
+		//List<Person> list = personService.selectByLastName("Nguyen2");
+				
+		//*****************************************
+		
+		// ****************************************
+		// custom update sql
+		//personService.updateNameById(Long.valueOf(8), "abc", "def");
+		
+		// ****************************************
+		List<Person> list = personService.findAll();
+		
+		model.addAttribute("persons", list);
 
 		return "personList";
 	}
@@ -64,25 +85,23 @@ public class MainController {
 	}
 
 	@RequestMapping(value = { "/addPerson" }, method = RequestMethod.POST)
-	public String savePerson(Model model,
-			@ModelAttribute("personForm") PersonForm personForm) {
+	public String savePerson(Model model, @ModelAttribute("personForm") PersonForm personForm) {
 
 		String firstName = personForm.getFirstName();
 		String lastName = personForm.getLastName();
 
-		// neu khong bi loi
-		if (firstName != null && firstName.length() > 0 //
-				&& lastName != null && lastName.length() > 0) {
-			//add vao person list da khai bao phia trenÚ
-			Person newPerson = new Person(firstName, lastName);
-			persons.add(newPerson);
-
-			return "redirect:/personList";
-		} else {
-			//neu bi loi
-			model.addAttribute("errorMessage", errorMessage);
-			return "addPerson";
-		}
+//		if (firstName != null && firstName.length() > 0 //
+//				&& lastName != null && lastName.length() > 0) {
+//			//add vao person list da khai bao phia trenÚ
+//			Person newPerson = new Person(firstName, lastName);
+//			persons.add(newPerson);
+//
+//			return "redirect:/personList";
+//		} else {
+//			model.addAttribute("errorMessage", errorMessage);
+//			return "addPerson";
+//		}
+		return null;
 
 	}
 

@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+      <title>Student List</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+   </head>
+   <body>
+      <h1>Student List</h1>
+     <a href="addStudent">Add Student</a>
+      <br/><br/>
+      <div>
+     	<div th:if="${errorMessage}" th:utext="${errorMessage}"
+         	style="color:red;font-style:italic;">
+      	</div>
+      	<div th:if="${message}" th:utext="${message}"
+         	style="color:green;font-style:italic;">
+      	</div>
+         <table border="1">
+            <tr>
+               <th>Full Name</th>
+               <th>Birthday</th>
+               <th>Math</th>
+               <th>Literature</th>
+               <th>English</th>
+               <th>Delete</th>
+               <th>Edit</th>
+            </tr>
+            <tr th:each ="student : ${students}">
+               <td th:utext="${student.fullName}">...</td>
+               <td th:utext="${student.birthday}">...</td>
+               <td th:utext="${student.math}">...</td>
+               <td th:utext="${student.literature}">...</td>
+               <td th:utext="${student.english}">...</td>
+               <td><a th:href="@{'/deleteStudent?id=' + ${student.id}}">Delete</a></td>
+               <td><a th:href="@{'/editStudent?id=' + ${student.id}}">Edit</a></td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

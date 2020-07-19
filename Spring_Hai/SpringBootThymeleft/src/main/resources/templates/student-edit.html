@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+      <title>Edit student</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+   </head>
+  
+   <body>
+      <h1>Student List</h1>
+      	<div th:if="${errorMessage}" th:utext="${errorMessage}"
+         	style="color:red;font-style:italic;">
+      	</div>
+      	<div th:if="${message}" th:utext="message"
+         	style="color:green;font-style:italic;">
+      	</div>
+      <form th:action="@{/editStudent}"
+         th:object="${studentForm}" method="POST">
+         Full Name:
+         <input type="text" th:field="*{fullName}" value = "${studentForm.firstName}"/>
+         <br/>
+         Birthday:
+         <input type="date" th:field="*{birthday}" value = "${studentForm.birthday}"/>
+         <br/>
+         Match
+         <input type="number" th:field="*{math}" value = "${studentForm.math}"/>
+         <br/>
+         Literature:
+         <input type="number" th:field="*{literature}" value = "${studentForm.literature}"/>
+         <br/>
+         English:
+         <input type="number" th:field="*{english}" value = "${studentForm.english}"/>
+         
+         <input type="hidden" th:name="studentId" th:value = "${studentId}"/>
+         <br/>
+         <input type="submit" value="Edit" />
+      </form>      
+   </body>
+</html>

@@ -1,17 +1,32 @@
 package com.example.thymeleafdemo.model;
 
-public class Person {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "person")
+public class Person {
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
+	
+	@Column(name = "firstname")
 	private String firstName;
+	
+	@Column(name = "lastname")
 	private String lastName;
 
-	public Person() {
-
+	public long getId() {
+		return id;
 	}
 
-	public Person(String firstName, String lastName) {
-		this.firstName = firstName;
-		this.lastName = lastName;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 	public String getFirstName() {

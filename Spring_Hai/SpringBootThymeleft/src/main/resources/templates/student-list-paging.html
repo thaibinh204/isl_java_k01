@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Student List</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}" />
+</head>
+<body>
+	<h1>Student List</h1>
+	<a href="addStudent">Add Student</a>
+	<br />
+	<br />
+	<div class="row" th:fragment="student-list"
+		th:if="${studentList != null && !studentList.isEmpty()}">
+		<table border="1">
+			<tr>
+				<th>Full Name</th>
+				<th>Birthday</th>
+				<th>Math</th>
+				<th>Literature</th>
+				<th>English</th>
+				<th>Delete</th>
+				<th>Edit</th>
+			</tr>
+			<tr th:each="student : ${studentList}">
+				<td th:utext="${student.fullName}">...</td>
+				<td th:utext="${student.birthday}">...</td>
+				<td th:utext="${student.math}">...</td>
+				<td th:utext="${student.literature}">...</td>
+				<td th:utext="${student.english}">...</td>
+				<td><a th:href="@{'/deleteStudent?id=' + ${student.id}}">Delete</a></td>
+				<td><a th:href="@{'editStudent?id=' + ${student.id}}">Delete</a></td>
+			</tr>
+		</table>
+	</div>
+
+
+	<div class="row" th:fragment="pagination">
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+			<nav aria-label="Pagination">
+				<ul class="pagination justify-content-center">
+					<li class="page-item" th:each="pageNumber : ${pageNumbers}" style="width: 40px; float: left;">
+						<a class="page-link"
+						th:href="@{|/student-list/page/${pageNumber}|}"
+						th:text=${pageNumber}>1</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<div class="col-md-2"></div>
+	</div>
+</body>
+</html>
