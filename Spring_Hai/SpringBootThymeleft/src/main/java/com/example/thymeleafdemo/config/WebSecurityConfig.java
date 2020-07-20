@@ -41,12 +41,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         	.csrf().disable()
             .authorizeRequests()
 	            .antMatchers("/webjars/**").permitAll()
+<<<<<<< HEAD
 	    		.antMatchers("/css/**", "/js/**", "/templates/**").permitAll()
             	.antMatchers("/register", "/index").permitAll()
+=======
+	    		.antMatchers("/css/**", "/js/**", "/templates/**","/assets/**").permitAll()
+            	.antMatchers("/register").permitAll()
+>>>>>>> 844218f03558f5e41d3969af03e34749c653ece5
                 .antMatchers("/user/**").hasRole("MEMBER")
                 .antMatchers("/admin/**").hasRole("ADMIN")
         		.antMatchers("/favicon.ico").permitAll()
-        		.antMatchers("/home", "/about").permitAll()
+        		.antMatchers("/home", "/about","/layout").permitAll()
                 .anyRequest().authenticated()
                 .and()
 				.formLogin().loginPage("/login").permitAll()

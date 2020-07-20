@@ -41,5 +41,10 @@ public class DefaultController {
     public String error403() {
         return "/error/403";
     }
+    
+    @GetMapping("/layout")
+    public String layout() {
+        return "/layout_sample";
+    }
 
 }
