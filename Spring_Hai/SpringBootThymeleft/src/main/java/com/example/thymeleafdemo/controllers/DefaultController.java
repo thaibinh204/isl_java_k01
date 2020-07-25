@@ -26,6 +26,18 @@ public class DefaultController {
     public String user() {
         return "/user";
     }
+    
+    @GetMapping("/teacher")
+    public String teacher() {
+        return "/teacher";
+    }
+
+    
+    @GetMapping("/student")
+    public String student() {
+        return "/student";
+    }
+
 
     @GetMapping("/about")
     public String about() {
