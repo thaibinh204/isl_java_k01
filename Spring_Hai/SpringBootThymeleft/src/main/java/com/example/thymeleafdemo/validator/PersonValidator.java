@@ -8,7 +8,7 @@ import org.springframework.validation.Validator;
 import com.example.thymeleafdemo.model.Person;
 
 @Component
-public class PersonValidator implements Validator{
+public class PersonValidator implements Validator {
 
 	@Override
 	public boolean supports(Class<?> clazz) {
@@ -21,9 +21,10 @@ public class PersonValidator implements Validator{
 		// TODO Auto-generated method stub
 		Person person = (Person) target;
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "NotEmpty");
-		
-		
+		if (person.getFirstName().length() > 20) {
+			errors.rejectValue("firstName", "maxsize.persn.name");
+		}
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "NotEmpty");
-		
+
 	}
 }
