@@ -21,6 +21,8 @@ public class PersonValidator implements Validator{
 		// TODO Auto-generated method stub
 		Person person = (Person) target;
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "firstName", "NotEmpty");
+		
+		
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lastName", "NotEmpty");
 		
 	}
